@@ -1,0 +1,26 @@
+# Logger
+
+## A simple logging framework for PHP apps.
+
+This derives a lot of it's structure from the python logging system.
+
+## To get it working
+
+You need to define $GLOBALS['LOGGER_ROOT'] and a loadClass() function.  See tests/Logger/AllTests.php for an example of them.
+
+You also need to wireup a builder:
+
+Logger::setBuilder(new Logger_Builder_Simple);
+
+That builder is just a simple one used for testing, there is a Logger_Builder_Config which takes an array of key value pairs which is the config for the logging system.
+
+Get a logger instance:
+
+$logger = Logger::getLogger('root');
+$logger->warn("oh no, it's a tarp!");
+
+At the end of your script call Logger::shutdown() to flush the logging buffer.
+
+### Areas for improvement:
+
+Some appenders need some work and the configuration system sucks right now.
